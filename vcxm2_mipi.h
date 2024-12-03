@@ -20,7 +20,7 @@
 #ifndef VCXM2_MIPI_H_
 #define VCXM2_MIPI_H_
 
-#define MODVERSION "1.0.0.0"	// (also used as DKMS module version)
+#define MODVERSION "1.0.0.1"	// (also used as DKMS module version)
 #define MODMODULENAME "vcxm2_mipi"
 
 #endif /* VCXM2_MIPI_H_ */
