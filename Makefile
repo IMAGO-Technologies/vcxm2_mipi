@@ -2,6 +2,8 @@
 # or call make DEBUG=y default is DEBUG=n
 # DEBUG = y
 
+# include dkms.conf for PACKAGE_VERSION
+include $(PWD)/dkms.conf
 
 ifeq ($(DEBUG),y)
   DEBFLAGS = -O -g -DDEBUG # "-O" is needed to expand inlines
@@ -10,7 +12,7 @@ else
   DEBFLAGS = -O2  
 endif
 
-ccflags-y := $(DEBFLAGS) -Werror -Wall -Wno-unused-parameter -Wno-date-time -I/mnt/Linux_for_Tegra_36.4/source/nvidia-oot/include
+ccflags-y := $(DEBFLAGS) -DMODVERSION=\"$(PACKAGE_VERSION)\" -Werror -Wall -Wno-unused-parameter -Wno-date-time -I/mnt/Linux_for_Tegra_36.4/source/nvidia-oot/include
 vcxm2_mipi-objs := vcxm2_mipi_sensor.o
 obj-m	:= vcxm2_mipi.o
 
