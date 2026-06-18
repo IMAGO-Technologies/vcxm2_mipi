@@ -2,8 +2,11 @@
 # or call make DEBUG=y default is DEBUG=n
 # DEBUG = y
 
+# get directory of this module
+M ?= $(shell pwd)
+
 # include dkms.conf for PACKAGE_VERSION
-include $(PWD)/dkms.conf
+include $(M)/dkms.conf
 
 ifeq ($(DEBUG),y)
   DEBFLAGS = -O -g -DDEBUG # "-O" is needed to expand inlines
@@ -24,11 +27,11 @@ KERNELDIR ?= /lib/modules/$(shell uname -r)/build
 
 
 default:
-	$(MAKE) -C $(KERNELDIR) M=$(PWD) modules 
+	$(MAKE) -C $(KERNELDIR) M=$(M) modules 
 
 clean:
 	rm -rf *.o *~ core .depend .*.cmd *.ko *.mod.c .tmp_versions modules.order Module.symvers
 
 install:
-	make -C $(KERNELDIR) M=$(PWD) modules_install
+	make -C $(KERNELDIR) M=$(M) modules_install
 	depmod -a 
